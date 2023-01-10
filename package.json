@@ -1,0 +1,47 @@
+{
+  "name": "shiftjs",
+  "version": "1.0.0-beta1",
+  "description": "Oldbros functional library, pure, readable and fast",
+  "main": "src/shift.js",
+  "type": "module",
+  "scripts": {
+    "check": "npx tsc --project .",
+    "lint": "eslint .",
+    "fmt": "eslint --fix .",
+    "test": "tap",
+    "posttest": "tap --coverage-report=text-lcov | codecov --pipe"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oldbros/shiftjs.git"
+  },
+  "keywords": [
+    "oldbros",
+    "functional",
+    "utils",
+    "utilities",
+    "pure",
+    "fp"
+  ],
+  "author": {
+    "name": "Georg Oldenburger",
+    "email": "georgoldenb@gmail.com",
+    "url": "https://github.com/georgolden"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oldbros/shiftjs/issues"
+  },
+  "homepage": "https://github.com/oldbros/shiftjs#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@oldbros/tsconfig": "^1.0.1",
+    "@types/node": "^18.11.18",
+    "codecov": "^3.8.3",
+    "eslint": "^8.31.0",
+    "eslint-config-oldbros": "^1.0.2",
+    "ramda": "^0.28.0",
+    "tap": "^16.3.3",
+    "typescript": "^4.9.4"
+  }
+}
