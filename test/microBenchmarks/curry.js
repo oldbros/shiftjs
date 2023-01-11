@@ -34,5 +34,5 @@ test('Curry microbenchmark: oldbros vs ramda', () => {
   const ramdaTime = ramdaCurryBench();
   const difference = ramdaTime - oldbrosTime;
   const ratio = ramdaTime / oldbrosTime;
-  console.table([{ testSubject,  ramdaTime, oldbrosTime, difference, ratio }]);
+  console.table([{ testSubject, ramdaTime, oldbrosTime, difference, ratio }]);
 });
