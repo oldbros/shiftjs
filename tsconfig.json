@@ -1,3 +1,4 @@
 {
-  "extends": "@oldbros/tsconfig"
+  "extends": "@oldbros/tsconfig",
+  "exclude": ["docs"]
 }
