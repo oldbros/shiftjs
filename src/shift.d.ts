@@ -1,2 +1,1 @@
-export { partial } from './basic/partial';
-export { curry } from './basic/curry';
+export { partial, curry } from './basic/types';
