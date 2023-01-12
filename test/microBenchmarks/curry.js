@@ -2,6 +2,7 @@ import { curry as oldbrosCurry } from '../../src/shift.js';
 import { curry as ramdaCurry } from 'ramda';
 import test from 'node:test';
 import { performance } from 'node:perf_hooks';
+import { roundDecimal } from '../utils.js';
 
 test('Curry microbenchmark: oldbros vs ramda', () => {
   const testSubject = 'function:curry';
@@ -16,7 +17,7 @@ test('Curry microbenchmark: oldbros vs ramda', () => {
 
     }
     const after = performance.now();
-    return after - before;
+    return roundDecimal(after - before, 3);
   };
 
   const ramdaCurryBench = () => {
@@ -27,12 +28,12 @@ test('Curry microbenchmark: oldbros vs ramda', () => {
 
     }
     const after = performance.now();
-    return after - before;
+    return roundDecimal(after - before, 3);
   };
 
   const oldbrosTime = oldbrosCurryBench();
   const ramdaTime = ramdaCurryBench();
-  const difference = ramdaTime - oldbrosTime;
-  const ratio = ramdaTime / oldbrosTime;
+  const difference = roundDecimal(ramdaTime - oldbrosTime, 3);
+  const ratio = roundDecimal(ramdaTime / oldbrosTime, 3);
   console.table([{ testSubject, ramdaTime, oldbrosTime, difference, ratio }]);
 });

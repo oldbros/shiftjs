@@ -2,6 +2,7 @@ import { partial as rambdaPartial } from 'ramda';
 import { partial as oldbrosPartial } from '../../src/shift.js';
 import test from 'node:test';
 import { performance } from 'node:perf_hooks';
+import { roundDecimal } from '../utils.js';
 
 test('Partial microbenchmark: oldbros vs ramda', () => {
   const testSubject = 'function:partial';
@@ -16,7 +17,7 @@ test('Partial microbenchmark: oldbros vs ramda', () => {
       sumTwo(i);
     }
     const after = performance.now();
-    return after - before;
+    return roundDecimal(after - before, 3);
   };
 
   const ramdaPartialBench = () => {
@@ -27,12 +28,12 @@ test('Partial microbenchmark: oldbros vs ramda', () => {
       sumTwo(i);
     }
     const after = performance.now();
-    return after - before;
+    return roundDecimal(after - before, 3);
   };
 
   const oldbrosTime = oldbrosPartialBench();
   const ramdaTime = ramdaPartialBench();
-  const difference = ramdaTime - oldbrosTime;
-  const ratio = ramdaTime / oldbrosTime;
+  const difference = roundDecimal(ramdaTime - oldbrosTime, 3);
+  const ratio = roundDecimal(ramdaTime / oldbrosTime, 3);
   console.table([{ testSubject, ramdaTime, oldbrosTime, difference, ratio }]);
 });
