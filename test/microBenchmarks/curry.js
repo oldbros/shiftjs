@@ -17,7 +17,7 @@ test('Curry microbenchmark: oldbros vs ramda', () => {
 
     }
     const after = performance.now();
-    return roundDecimal(after - before, 3);
+    return roundDecimal(after - before);
   };
 
   const ramdaCurryBench = () => {
@@ -28,12 +28,12 @@ test('Curry microbenchmark: oldbros vs ramda', () => {
 
     }
     const after = performance.now();
-    return roundDecimal(after - before, 3);
+    return roundDecimal(after - before);
   };
 
   const oldbrosTime = oldbrosCurryBench();
   const ramdaTime = ramdaCurryBench();
-  const difference = roundDecimal(ramdaTime - oldbrosTime, 3);
-  const ratio = roundDecimal(ramdaTime / oldbrosTime, 3);
+  const difference = roundDecimal(ramdaTime - oldbrosTime);
+  const ratio = roundDecimal(ramdaTime / oldbrosTime);
   console.table([{ testSubject, ramdaTime, oldbrosTime, difference, ratio }]);
 });

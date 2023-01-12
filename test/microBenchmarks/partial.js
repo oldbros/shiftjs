@@ -17,7 +17,7 @@ test('Partial microbenchmark: oldbros vs ramda', () => {
       sumTwo(i);
     }
     const after = performance.now();
-    return roundDecimal(after - before, 3);
+    return roundDecimal(after - before);
   };
 
   const ramdaPartialBench = () => {
@@ -28,12 +28,12 @@ test('Partial microbenchmark: oldbros vs ramda', () => {
       sumTwo(i);
     }
     const after = performance.now();
-    return roundDecimal(after - before, 3);
+    return roundDecimal(after - before);
   };
 
   const oldbrosTime = oldbrosPartialBench();
   const ramdaTime = ramdaPartialBench();
-  const difference = roundDecimal(ramdaTime - oldbrosTime, 3);
-  const ratio = roundDecimal(ramdaTime / oldbrosTime, 3);
+  const difference = roundDecimal(ramdaTime - oldbrosTime);
+  const ratio = roundDecimal(ramdaTime / oldbrosTime);
   console.table([{ testSubject, ramdaTime, oldbrosTime, difference, ratio }]);
 });
