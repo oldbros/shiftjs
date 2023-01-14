@@ -1,3 +1,6 @@
 {
-  "extends": ["oldbros"]
+  "extends": ["oldbros"],
+  "rules": {
+    "max-len": ["error", 120]
+  }
 }
