@@ -1,9 +1,9 @@
-/** @typedef {import('./types').curry} Curry*/
+/** @typedef {import('./.types').AnyFunc} AnyFunc*/
 
 /**
  * Curry - high performant curry function
  * see https://en.wikipedia.org/wiki/Currying
- * @type {Curry}
+ * @type {(fn: AnyFunc) => AnyFunc}
  * */
 export const curry = (fn) => (...args) => {
   if (fn.length > args.length) {
