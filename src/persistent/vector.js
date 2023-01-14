@@ -1,13 +1,12 @@
-/** @typedef {import('./types').VectorNode} VNode */
-/** @typedef {import('./types').PersistentVector} PVector */
+/** @typedef {any[]} NodeArray32 */
 
-/** @type {() => VNode} */
+/** @type {() => NodeArray32} */
 const emptyNode = () => [];
 
-/** @type {(node: VNode) => VNode} */
+/** @type {(node: NodeArray32) => NodeArray32} */
 const copyNode = (node) => [...node];
 
-/** @type {(level: number, node: VNode, i: number, val: any) => VNode} */
+/** @type {(level: number, node: NodeArray32, i: number, val: any) => NodeArray32} */
 const doAssoc = (level, node, i, val) => {
   const ret = [...node];
   if (level === 0) {
@@ -21,7 +20,7 @@ const doAssoc = (level, node, i, val) => {
   return ret;
 };
 
-/** @type {(level: number, node: VNode) => VNode} */
+/** @type {(level: number, node: NodeArray32) => NodeArray32} */
 const newPath = (level, node) => {
   if (level === 0) {
     return node;
@@ -31,7 +30,7 @@ const newPath = (level, node) => {
   return ret;
 };
 
-/** @type {(level: number, parent: VNode, tailNode: VNode, count: number) => VNode} */
+/** @type {(level: number, parent: NodeArray32, tailNode: NodeArray32, count: number) => NodeArray32} */
 const pushTail = (level, parent, tailNode, count) => {
   const subIndex = ((count - 1) >>> level) & 0x01f;
   const ret =  copyNode(parent);
@@ -48,20 +47,20 @@ const pushTail = (level, parent, tailNode, count) => {
   return ret;
 };
 
-/** @type {(level: number, node: VNode, count: number) => ?VNode} */
+/** @type {(level: number, node: NodeArray32, count: number) => NodeArray32} */
 const popTail = (level, node, count) => {
   const subidx = ((count - 2) >>> level) & 0x01f;
   if (level > 5) {
     const newchild = popTail(level - 5, node[subidx], count);
-    if (newchild === null && subidx === 0) {
-      return null;
+    if (newchild.length === 0 && subidx === 0) {
+      return newchild;
     } else {
       const ret = copyNode(node);
       ret[subidx] = newchild;
       return ret;
     }
   } else if (subidx === 0) {
-    return null;
+    return emptyNode();
   } else if (subidx === node.length - 1) {
     return node.slice(0, -1);
   } else {
@@ -71,20 +70,15 @@ const popTail = (level, node, count) => {
   }
 };
 
-/** @type {PVector} */
 export class PersistentVector {
+  /** @type {PersistentVector} */
   static EMPTY = new PersistentVector(0, 5, emptyNode(), emptyNode());
-
-  count;
-  shift;
-  root;
-  tail;
 
   /**
    * @param {number} count
    * @param {number} shift
-   * @param {VNode} root
-   * @param {VNode} tail
+   * @param {NodeArray32} root
+   * @param {NodeArray32} tail
    * */
   constructor(count, shift, root, tail) {
     this.count = count;
@@ -93,6 +87,7 @@ export class PersistentVector {
     this.tail = tail;
   }
 
+  /** @type {() => number} */
   #tailOffset() {
     if (this.count < 32) {
       return 0;
@@ -101,6 +96,7 @@ export class PersistentVector {
     }
   }
 
+  /** @type {(i: number) => NodeArray32} */
   arrayFor(i) {
     if (i >= 0 && i < this.count) {
       if (i >= this.#tailOffset()) return this.tail;
@@ -115,7 +111,10 @@ export class PersistentVector {
     throw new Error('Index out of bounds');
   }
 
-  // get
+  /**
+   * get
+   * @type {(i: number) => any}
+   * */
   nth(i) {
     if (i >= 0 && i < this.count) {
       const node = this.arrayFor(i);
@@ -124,7 +123,10 @@ export class PersistentVector {
     return undefined;
   }
 
-  // push
+  /**
+   * push
+   * @type {(val: number) => PersistentVector}
+   * */
   cons(val) {
     // room in tail?
     // tail.length < 32
@@ -149,6 +151,10 @@ export class PersistentVector {
     return new PersistentVector(this.count + 1, newShift, newRoot, [val]);
   }
 
+  /**
+   * update
+   * @type {(i: number, val: number) => PersistentVector}
+   * */
   assocN(i, val) {
     if (i >= 0 && i < this.count) {
       if (i >= this.#tailOffset()) {
@@ -166,6 +172,10 @@ export class PersistentVector {
     throw new Error('Index out of bounds');
   }
 
+  /**
+   * delete last
+   * @type {() => PersistentVector}
+   * */
   pop() {
     if (this.count === 0) {
       throw new Error('Can\'t pop empty vector');
@@ -182,9 +192,6 @@ export class PersistentVector {
 
     let newroot = popTail(this.shift, this.root, this.count);
     let newshift = this.shift;
-    if (newroot === null) {
-      newroot = emptyNode();
-    }
     if (this.shift > 5 && newroot[1] === null) {
       newroot = newroot[0];
       newshift -= 5;
