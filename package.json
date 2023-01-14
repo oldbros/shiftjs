@@ -1,16 +1,18 @@
 {
   "name": "@oldbros/shiftjs",
-  "version": "1.0.0-beta2",
+  "version": "1.0.0-beta3",
   "description": "Oldbros functional library, pure, readable and fast",
   "main": "src/shift.js",
-  "types": "src/shift.d.ts",
+  "types": "types/shift.d.ts",
   "type": "module",
   "scripts": {
-    "check": "npx tsc --project .",
+    "check": "npx tsc --project check-tsconfig.json",
+    "types": "rm -rf types && npx tsc --project tsconfig.json",
     "lint": "eslint .",
     "fmt": "eslint --fix .",
-    "docs": "npx typedoc --entryPointStrategy packages --name \"@oldbros/shiftjs\" .",
-    "test": "tap --no-coverage"
+    "docs": "npx typedoc --entryPointStrategy packages .",
+    "test": "tap --no-coverage",
+    "final": "npm run fmt && npm run check && npm run lint && npm run test && npm run types && npm run docs"
   },
   "repository": {
     "type": "git",
