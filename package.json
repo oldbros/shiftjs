@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "fmt": "eslint --fix .",
     "docs": "npx typedoc --entryPointStrategy packages .",
-    "test": "tap --no-coverage",
+    "test": "npx c8 --check-coverage tap --no-coverage",
     "final": "npm run fmt && npm run check && npm run lint && npm run test && npm run types && npm run docs"
   },
   "repository": {
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@oldbros/tsconfig": "^1.0.1",
     "@types/node": "^18.11.18",
+    "c8": "^7.12.0",
     "eslint": "^8.31.0",
     "eslint-config-oldbros": "^1.0.2",
     "ramda": "^0.28.0",

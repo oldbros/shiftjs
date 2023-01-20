@@ -1,5 +1,5 @@
 node_modules
 .nyc_output
 .env
-.coveralls.yml
 .vscode
+coverage
