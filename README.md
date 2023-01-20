@@ -6,6 +6,10 @@ Inspired from [**Ramda**](https://ramdajs.com/) and [**HowProgrammingWorks**](ht
 
 Faster, lightweight and readble code compare to **ramda**
 
+JS implementations of **Clojure** persistent data structures: Persistent Vector.
+
+Original code: https://github.com/clojure/clojure/tree/master/src/jvm/clojure/lang
+
 ## Installation
 
 ```sh
