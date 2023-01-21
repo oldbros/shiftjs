@@ -1,8 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert';
+import { performance } from 'node:perf_hooks';
 import { curry } from './curry.js';
 import { curry as ramdaCurry } from 'ramda';
-import test from 'node:test';
-import { performance } from 'node:perf_hooks';
-import assert from 'node:assert';
 
 test('curry', () => {
   /** @type {(a: number, b: number, c: number) => number} */

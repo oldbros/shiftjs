@@ -1,8 +1,8 @@
-import { partial } from './partial.js';
-import { partial as rambdaPartial } from 'ramda';
-import { performance } from 'node:perf_hooks';
 import test from 'node:test';
 import assert from 'node:assert';
+import { performance } from 'node:perf_hooks';
+import { partial } from './partial.js';
+import { partial as ramdaPartial } from 'ramda';
 
 test('partial', () => {
   /** @type {(a: number, b: number, c: number) => number} */
@@ -46,8 +46,8 @@ test('Partial microbenchmark: oldbros vs ramda', () => {
 
   const ramdaPartialBench = () => {
     const before = performance.now();
-    const sumOne = rambdaPartial(sum, [10]);
-    const sumTwo = rambdaPartial(sumOne, [10]);
+    const sumOne = ramdaPartial(sum, [10]);
+    const sumTwo = ramdaPartial(sumOne, [10]);
     for (let i = 0; i < iterations; i++) {
       sumTwo(i);
     }
