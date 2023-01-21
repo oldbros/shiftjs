@@ -1,6 +1,6 @@
 {
   "name": "@oldbros/shiftjs",
-  "version": "1.0.0-beta5",
+  "version": "1.0.0-beta6",
   "description": "Oldbros functional library, pure, readable and fast",
   "main": "src/shift.js",
   "types": "types/shift.d.ts",
