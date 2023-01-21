@@ -6,8 +6,8 @@
   "types": "types/shift.d.ts",
   "type": "module",
   "scripts": {
-    "check": "npx tsc --project check-tsconfig.json",
-    "types": "rm -rf types && npx tsc --project tsconfig.json",
+    "check": "npx tsc --project tsconfig.json",
+    "types": "rm -rf types && npx tsc --project tsconfig.types.json",
     "lint": "eslint .",
     "fmt": "eslint --fix .",
     "docs": "npx typedoc --entryPointStrategy packages .",
