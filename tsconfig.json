@@ -1,19 +1,4 @@
 {
   "extends": "@oldbros/tsconfig",
-  "compilerOptions": {
-    "noEmit": false,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "types"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["src/**/*.test.js"],
-  "typedocOptions": {
-		"name": "Documentation",
-    "includeVersion": true,
-		"out": "generatedDocs",
-		"excludeExternals": true,
-		"readme": "README.md",
-		"gitRevision": "main"
-	}
+  "include": ["src/**/*"]
 }
