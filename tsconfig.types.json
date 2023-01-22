@@ -7,13 +7,5 @@
     "outDir": "types"
   },
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test.js"],
-  "typedocOptions": {
-		"name": "Documentation",
-    "includeVersion": true,
-		"out": "generatedDocs",
-		"excludeExternals": true,
-		"readme": "README.md",
-		"gitRevision": "main"
-	}
+  "exclude": ["src/**/*.test.js"]
 }

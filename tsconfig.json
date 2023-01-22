@@ -1,4 +1,12 @@
 {
   "extends": "@oldbros/tsconfig",
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "typedocOptions": {
+		"name": "Documentation",
+    "includeVersion": true,
+		"out": "docs",
+		"excludeExternals": true,
+		"readme": "README.md",
+		"gitRevision": "main"
+	}
 }
