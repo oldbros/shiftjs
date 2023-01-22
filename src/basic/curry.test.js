@@ -9,6 +9,9 @@ test('curry', () => {
   const sumThree = (a, b, c) => a + b + c;
   const carriedSum = curry(sumThree);
   assert.strictEqual(carriedSum(10, 10, 10), 30);
+  assert.strictEqual(carriedSum(10, 10)(10), 30);
+  assert.strictEqual(carriedSum(10)(10)(10), 30);
+  assert.strictEqual(carriedSum(10)(10, 10), 30);
 });
 
 test('Curry microbenchmark: oldbros vs ramda', () => {

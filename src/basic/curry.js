@@ -8,7 +8,7 @@
 export const curry = (fn) => (...args) => {
   if (fn.length > args.length) {
     const f = fn.bind(null, ...args);
-    return curry.bind(null, f);
+    return curry(f);
   } else {
     return fn(...args);
   }
