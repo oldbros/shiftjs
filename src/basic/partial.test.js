@@ -1,7 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert';
 import { performance } from 'node:perf_hooks';
-import { partial, partialObject } from './partial.js';
+import {
+  partial,
+  partialOne,
+  partialReverse,
+  partialReverseOne,
+  partialObject,
+  partialObjectLast,
+  partialObjectFirst,
+} from './partial.js';
 import { partial as ramdaPartial, partialObject as ramdaPartialObj } from 'ramda';
 
 test('partial', () => {
@@ -28,6 +36,24 @@ test('partial', () => {
   assert.strictEqual(sumAll(), 30);
 });
 
+test('partialOne', () => {
+  const sumThree = (a, b, c) => a + b + c;
+  const sum = partialOne(sumThree, 10);
+  assert.strictEqual(sum(10, 10), 30);
+});
+
+test('partialReverse', () => {
+  const printABC = (a, b, c) => `a: ${a}, b: ${b}, c: ${c}`;
+  const print = partialReverse(printABC, 'c', 'b', 'a');
+  assert.strictEqual(print(), 'a: a, b: b, c: c');
+});
+
+test('partialReverseOne', () => {
+  const printABC = (a, b, c) => `a: ${a}, b: ${b}, c: ${c}`;
+  const print = partialReverseOne(printABC, 'c');
+  assert.strictEqual(print('a', 'b'), 'a: a, b: b, c: c');
+});
+
 test('partialObject', () => {
   /** @type {({a, b, c}: {a: number, b: number, c: number}) => number} */
   const sumThree = ({ a, b, c }) => a + b + c;
@@ -50,6 +76,18 @@ test('partialObject', () => {
   /** @type {() => number} */
   const sumAll = partialObject(sumThree, { a: 10, b: 10, c: 10 });
   assert.strictEqual(sumAll(), 30);
+});
+
+test('partialObjectLast', () => {
+  const noMeta = (a, b, { data, meta }) => data + meta;
+  const injectedMeta = partialObjectLast(noMeta, { meta: 'meta' });
+  assert.strictEqual(injectedMeta(null, null, { data: 'data+' }), 'data+meta');
+});
+
+test('partialObjectFirst', () => {
+  const noMeta = ({ data, meta }, num) => data + meta + num;
+  const injectedMeta = partialObjectFirst(noMeta, { meta: 'meta' });
+  assert.strictEqual(injectedMeta({ data: 'data+' }, '=payload'), 'data+meta=payload');
 });
 
 test('Partial microbenchmark: oldbros vs ramda', () => {
