@@ -1,10 +1,17 @@
 {
   "name": "@oldbros/shiftjs",
-  "version": "1.0.0-beta9",
+  "version": "1.0.0",
   "description": "Oldbros functional library, pure, readable and fast",
-  "main": "src/shift.js",
   "types": "types/shift.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/shift.js",
+      "require": "./dist/shift.cjs",
+      "default": "./dist/shift.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "check": "npx tsc --project tsconfig.json",
     "types": "rm -rf types && npx tsc --project tsconfig.types.json",
@@ -12,7 +19,8 @@
     "fmt": "eslint --fix .",
     "docs": "npx typedoc --entryPointStrategy packages .",
     "test": "npx c8 --check-coverage tap --no-coverage",
-    "final": "npm run fmt && npm run check && npm run lint && npm run test && npm run types && npm run docs"
+    "build": "node scripts/build.mjs",
+    "final": "npm run fmt && npm run check && npm run lint && npm run test && npm run types && npm run docs && npm run build"
   },
   "repository": {
     "type": "git",
@@ -40,6 +48,7 @@
     "@oldbros/tsconfig": "^1.0.1",
     "@types/node": "^18.11.18",
     "c8": "^7.12.0",
+    "esbuild": "0.17.12",
     "eslint": "^8.33.0",
     "eslint-config-oldbros": "^1.0.2",
     "ramda": "^0.28.0",

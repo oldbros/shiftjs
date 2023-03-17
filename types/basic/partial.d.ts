@@ -1,4 +1,4 @@
-/** @typedef {import('./.types').AnyFunc} AnyFunc*/
+/** @typedef {import('./types').AnyFunc} AnyFunc*/
 /**
  * partial - high performance partial application function
  * multiple arguments, left to right
@@ -49,4 +49,4 @@ export const partialObjectLast: (fn: AnyFunc, props: object) => AnyFunc;
  * @type {(fn: AnyFunc, props: object) => AnyFunc}
  * */
 export const partialObjectFirst: (fn: AnyFunc, props: object) => AnyFunc;
-export type AnyFunc = import('./.types').AnyFunc;
+export type AnyFunc = import('./types').AnyFunc;

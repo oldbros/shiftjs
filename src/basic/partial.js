@@ -1,4 +1,4 @@
-/** @typedef {import('./.types').AnyFunc} AnyFunc*/
+/** @typedef {import('./types').AnyFunc} AnyFunc*/
 
 /**
  * partial - high performance partial application function
