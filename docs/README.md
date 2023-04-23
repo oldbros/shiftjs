@@ -1,3 +1,5 @@
+Documentation / [Modules](modules.md)
+
 # @oldbros/shiftjs
 
 ![Documented](/docs/coverage.svg "Documented")

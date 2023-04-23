@@ -1,6 +1,6 @@
 {
   "extends": "@oldbros/tsconfig",
-  "include": ["types/shift.d.ts"],
+  "include": ["src/**/*"],
   "typedocOptions": {
 		"name": "Documentation",
     "includeVersion": true,
