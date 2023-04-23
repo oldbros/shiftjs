@@ -4,7 +4,7 @@
 /**
  * Wrappes async function into [err, res] contract
  * @param {AnyAsyncFn} fn
- * @returns {(...args: any[]) => Promise<[Error?, any]>}
+ * @returns {(...args: any[]) => Promise<any>}
  */
 export const errorify = (fn) =>
   (...args) => new Promise(
