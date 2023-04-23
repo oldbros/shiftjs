@@ -1,0 +1,6 @@
+{
+  "check-coverage": true,
+  "lines": 70,
+  "all": true,
+  "reporter": ["text-summary", "cobertura"]
+}

@@ -1,13 +1,4 @@
-export {
-  partial,
-  partialOne,
-  partialReverse,
-  partialReverseOne,
-  partialObject,
-  partialObjectLast,
-  partialObjectFirst,
-} from './basic/partial.js';
-export { curry } from './basic/curry.js';
-export { compose } from './basic/compose.js';
-export { pipe } from './basic/pipe.js';
-export { PersistentVector } from './persistent/vector.js';
+import * as sync from './sync/index.js';
+import * as async from './async/index.js';
+import * as dataStructures from './persistent/index.js';
+export default { async, ...sync, ...dataStructures };

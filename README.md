@@ -1,5 +1,8 @@
 # @oldbros/shiftjs
 
+![Documented](/docs/coverage.svg "Documented")
+![Test Covered](/docs/testCoverage.svg "Test Covered")
+
 **ShiftJS** is a functional programming library provided by **@oldbros** organization
 
 Inspired from [**Ramda**](https://ramdajs.com/) and [**HowProgrammingWorks**](https://github.com/HowProgrammingWorks)
