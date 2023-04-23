@@ -1,6 +1,6 @@
 {
   "name": "@oldbros/shiftjs",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Oldbros functional library, pure, readable and fast",
   "types": "types/shift.d.ts",
   "type": "module",
@@ -14,7 +14,8 @@
   },
   "scripts": {
     "check": "npx tsc --project tsconfig.json",
-    "types": "rm -rf types && npx tsc --project tsconfig.types.json",
+    "post:check": "npx tsc --project tsconfig.post.json",
+    "types": "rm -rf types && npx tsc --project tsconfig.types.json && npm run post:check",
     "lint": "eslint .",
     "fmt": "eslint --fix .",
     "build": "node scripts/build.mjs",
