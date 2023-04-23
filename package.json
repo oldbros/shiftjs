@@ -1,6 +1,6 @@
 {
   "name": "@oldbros/shiftjs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Oldbros functional library, pure, readable and fast",
   "types": "types/shift.d.ts",
   "type": "module",
