@@ -1,6 +1,6 @@
-[Documentation - v1.0.0](README.md) / Modules
+[Documentation - v1.1.0](README.md) / Modules
 
-# Documentation - v1.0.0
+# Documentation - v1.1.0
 
 ## Table of contents
 
