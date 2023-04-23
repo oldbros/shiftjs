@@ -120,7 +120,6 @@ export class PersistentVector {
       const node = this.arrayFor(i);
       return node[i & 0x01f];// 31
     }
-    // eslint-disable-next-line consistent-return
     return undefined;
   }
 
