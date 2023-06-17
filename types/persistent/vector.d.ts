@@ -8,6 +8,7 @@ export class PersistentVector {
      * @param {NodeArray32} tail
      * */
     constructor(count: number, shift: number, root: NodeArray32, tail: NodeArray32);
+    [Symbol.iterator](): Iterator<any>;
     count: number;
     shift: number;
     root: NodeArray32;
