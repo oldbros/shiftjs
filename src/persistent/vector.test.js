@@ -83,6 +83,20 @@ test('Persistent vector', async (t) => {
     });
   });
 
+  await t.test('Iterate over vector', () => {
+    let vec = PersistentVector.EMPTY;
+
+    for (let i = 0; i < 1000; i++) {
+      vec = vec.cons(i);
+    }
+
+    const arrayFromVec = [...vec];
+
+    assert.strictEqual(arrayFromVec.length, 1000);
+    assert.strictEqual(arrayFromVec[0], 0);
+    assert.strictEqual(arrayFromVec[arrayFromVec.length - 1], 999);
+  });
+
   const { results, iterations } = benchmark;
   console.table([{ testSubject: 'Persistent Vector', iterations, ...results }]);
 });

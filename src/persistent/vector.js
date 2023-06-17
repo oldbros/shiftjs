@@ -87,6 +87,35 @@ export class PersistentVector {
     this.tail = tail;
   }
 
+  [Symbol.iterator]() {
+    let i = 0;
+
+    return {
+      next: () => {
+        if (this.count === 0) {
+          return {
+            done: true,
+          };
+        }
+
+        const node = this.arrayFor(i);
+        const value = node[i & 0x01f];
+
+        if (i === this.count) {
+          return {
+            done: true,
+            value,
+          };
+        }
+        i += 1;
+        return {
+          done: false,
+          value,
+        };
+      },
+    };
+  }
+
   /** @type {() => number} */
   #tailOffset() {
     if (this.count < 32) {
@@ -98,7 +127,7 @@ export class PersistentVector {
 
   /** @type {(i: number) => NodeArray32} */
   arrayFor(i) {
-    if (i >= 0 && i < this.count) {
+    if (i >= 0 && i <= this.count) {
       if (i >= this.#tailOffset()) return this.tail;
       let node = this.root;
       for (let level = this.shift; level > 0; level -= 5) {
