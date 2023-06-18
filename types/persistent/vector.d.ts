@@ -15,8 +15,8 @@ export class PersistentVector {
     tail: NodeArray32;
     arrayFor(i: number): NodeArray32;
     nth(i: number): any;
-    cons(val: number): PersistentVector;
-    assocN(i: number, val: number): PersistentVector;
+    cons(val: any): PersistentVector;
+    assocN(i: number, val: any): PersistentVector;
     pop(): PersistentVector;
     #private;
 }
