@@ -8,14 +8,15 @@ export class PersistentVector {
      * @param {NodeArray32} tail
      * */
     constructor(count: number, shift: number, root: NodeArray32, tail: NodeArray32);
+    [Symbol.iterator](): Iterator<any>;
     count: number;
     shift: number;
     root: NodeArray32;
     tail: NodeArray32;
     arrayFor(i: number): NodeArray32;
     nth(i: number): any;
-    cons(val: number): PersistentVector;
-    assocN(i: number, val: number): PersistentVector;
+    cons(val: any): PersistentVector;
+    assocN(i: number, val: any): PersistentVector;
     pop(): PersistentVector;
     #private;
 }
